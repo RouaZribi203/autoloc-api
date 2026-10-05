@@ -30,10 +30,12 @@ public class Vehicule {
     @Enumerated(EnumType.STRING)
     StatutVehicule statut;
     BigDecimal tarifJournalier;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Agence agence;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    private Set<Equipement> equipements = new HashSet<>();
+    @ManyToOne
+    Agence agence;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy ="vehicule")
+    private Set<Reservation> Reservation;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Equipement> equipements;
 
 }
